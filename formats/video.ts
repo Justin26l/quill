@@ -12,7 +12,12 @@ class Video extends BlockEmbed {
     const node = super.create(value) as Element;
     node.setAttribute('frameborder', '0');
     node.setAttribute('allowfullscreen', 'true');
+
+    if (value.includes('facebook.com/watch/?v=')) {
+      node.setAttribute('src', `https://www.facebook.com/plugins/video.php?href=${this.sanitize(value)}`);
+    };
     node.setAttribute('src', this.sanitize(value));
+
     return node;
   }
 
